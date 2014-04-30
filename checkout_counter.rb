@@ -37,9 +37,7 @@ class Option
 		numb_chk = gets.to_i
 		checkout_item=Array.new(numb_chk)
 		puts "Enter the checkout items"
-		for i in (0..numb_chk)
-  			checkout_item[i]=gets.to_s.chomp
-		end
+		(0..numb_chk).each {|i| checkout_item[i] = gets.to_s.chomp }
 		puts "Total Price :"
 		puts  list.calculate_total_item(checkout_item)
 
