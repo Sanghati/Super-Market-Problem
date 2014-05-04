@@ -1,5 +1,7 @@
 require_relative './item'
 class List
+	attr_reader :items
+
 	def initialize()
 	  	@items = []
 	end
@@ -16,12 +18,13 @@ class List
 		total_price = 0
 		count_repeated_checkout_item = Hash.new(0) 
 		chkout_item.each { |item| count_repeated_checkout_item[item] += 1}
-		total_price = checkout_rules_of(count_repeated_checkout_item,total_price)
+		checkout_rules_of(count_repeated_checkout_item,total_price)
 	end
 	
 	def checkout_rules_of(count_repeated_checkout_item,total_price)
 	 	@items.each do |item_in_list|
-		 	count_repeated_checkout_item.each { |key, value| total_price = pricing_rules(item_in_list, value, total_price) if item_in_list.item_name.chomp == key }
+		 	count_repeated_checkout_item.each { |key, value| 
+			total_price = pricing_rules(item_in_list, value, total_price) if item_in_list.item_name.chomp == key }
 		end
 		total_price
 	end
@@ -56,4 +59,5 @@ class List
 		number_of_times.times { total_price += value }
 		total_price
 	end
+
 end
